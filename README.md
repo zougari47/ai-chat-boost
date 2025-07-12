@@ -4,6 +4,10 @@
 <h3>Add pre prompts automatically and access shortcuts for new chats, sidebar control, and code copying on leading AI chat platforms.</h3>
 </div>
 
+![img1](./public/screenshot-1.png)
+![img1](./public/screenshot-2.png)
+![img1](./public/screenshot-3.png)
+
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
