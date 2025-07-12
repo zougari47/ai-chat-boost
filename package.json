@@ -1,11 +1,11 @@
 {
-  "name": "vite-web-extension",
+  "name": "ai-chat-boost",
   "version": "1.4.0",
-  "description": "A simple chrome & firefox extension template with Vite, React, TypeScript and Tailwind CSS.",
+  "description": "A simple chrome & firefox extension to boost your productivity with AI chats",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JohnBra/vite-web-extension.git"
+    "url": "https://github.com/zougari/ai-chat-boost"
   },
   "scripts": {
     "build": "vite build --config vite.config.chrome.ts",
