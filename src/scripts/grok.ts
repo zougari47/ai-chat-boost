@@ -1,13 +1,12 @@
-import { $, $$ } from '@src/utils'
+import { $, $$, getPrePrompt2 } from '@src/utils'
 
-const textareaSelector = 'div[aria-label="Enter a prompt here"]'
+const textareaSelector = 'textarea'
 
-export const geminiCommands = [
+export const grokCommands = [
   {
     command: 'Open new chat',
     action: () => {
-      console.log('Hello rust ?')
-      const newChatBtn = $('button[aria-label="New chat"]') as HTMLButtonElement
+      const newChatBtn = $$('a[href="/"]')[1] as HTMLAnchorElement
       console.log({ newChatBtn })
       if (newChatBtn) {
         newChatBtn.click()
@@ -20,7 +19,7 @@ export const geminiCommands = [
     command: 'Toggle sidebar',
     action: () => {
       const sideBarToggleBtn = $(
-        'button[aria-label="Main menu"]'
+        'button[data-sidebar="trigger"]'
       ) as HTMLButtonElement
       if (sideBarToggleBtn) {
         sideBarToggleBtn.click()
@@ -44,7 +43,7 @@ export const geminiCommands = [
   {
     command: 'Copy last code block',
     action: () => {
-      const copyBtns = $$('button[aria-label="Copy code"]')
+      const copyBtns = $$('button[type="button"] span[class*="code-block"]')
 
       const lastCopyBtn = copyBtns[copyBtns.length - 1] as HTMLButtonElement
 

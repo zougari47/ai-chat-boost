@@ -14,6 +14,11 @@ export const websites = [
     url: 'gemini.google.com',
     run: () => {},
   },
+  {
+    name: 'Grok',
+    url: 'grok.com',
+    run: () => {},
+  },
 ]
 
 export const $ = (selector: string) => document.querySelector(selector)

@@ -1,6 +1,7 @@
 import { copilotMicrosoftCommands } from '@src/scripts/copilot-microsoft'
 import { deepSeekCommands } from '@src/scripts/deepseek'
 import { geminiCommands } from '@src/scripts/gemini'
+import { grokCommands } from '@src/scripts/grok'
 import { getEnabledSites, websites } from '@src/utils'
 
 const commands = [
@@ -53,19 +54,6 @@ async function main() {
   console.log('MAIN FUNCTION LOADED SUCCESSFUL')
   const hostname = window.location.hostname.toLowerCase()
 
-  // get enabled sites from storage
-  const enabledSites = await getEnabledSites()
-
-  for (const [siteName, isEnabled] of Object.entries(enabledSites)) {
-    console.log(siteName, isEnabled)
-    if (
-      hostname.startsWith(websites.find(w => w.name === siteName)?.url!!) &&
-      !isEnabled
-    ) {
-      return // exit the main function
-    }
-  }
-
   window.addEventListener('keydown', event => {
     for (const { command, keybinding } of commands) {
       const bindingKeys = parseKeybinding(keybinding)
@@ -79,18 +67,35 @@ async function main() {
         switch (window.location.hostname) {
           case 'chat.deepseek.com':
             deepSeekCommands.find(c => c.command === command)?.action()
-
             break
+
           case 'copilot.microsoft.com':
             copilotMicrosoftCommands.find(c => c.command === command)?.action()
-
             break
+
           case 'gemini.google.com':
             geminiCommands.find(c => c.command === command)?.action()
+            break
+
+          case 'grok.com':
+            grokCommands.find(c => c.command === command)?.action()
+            break
         }
       }
     }
   })
+
+  // get enabled sites from storage
+  const enabledSites = await getEnabledSites()
+  for (const [siteName, isEnabled] of Object.entries(enabledSites)) {
+    console.log(siteName, isEnabled)
+    if (
+      hostname.startsWith(websites.find(w => w.name === siteName)?.url!!) &&
+      !isEnabled
+    ) {
+      return // exit the main function
+    }
+  }
 
   const matchedSite = websites.find(s => hostname.startsWith(s.url))
 
@@ -117,9 +122,3 @@ if (document.readyState === 'loading') {
 } else {
   main()
 }
-
-console.log('CONTENT SCRIPT LOADED SUCCESSFULLY', window.location.href)
-
-// window.addEventListener('spa:navigation', () => {
-//   waitForElement('#target').then(doSomething)
-// })
