@@ -30,5 +30,10 @@
       "resources": ["contentStyle.css", "icon-128.png", "icon-32.png"],
       "matches": []
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ai-chat-boost@ahmedz.dev"
+    }
+  }
 }
